@@ -1,0 +1,61 @@
+<%- include('partials/head', { title: 'About' }) %>
+<body>
+    <%- include('partials/navbar', { active: 'about' }) %>
+
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <span class="eyebrow"><span class="dot" aria-hidden="true"></span>About us</span>
+                <h1>Welcome to the Online Bus Pass System</h1>
+                <p>Get your bus pass quickly and easily. Apply, pay and get your pass online with no paperwork and no queues.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="features-title">
+            <div class="container">
+                <h2 id="features-title" class="sr-only">Features</h2>
+                <div class="grid-3">
+                    <div class="feature">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+                        </div>
+                        <h3>Easy Registration</h3>
+                        <p>Register and apply for a bus pass using a short form.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <h3>Quick Approval</h3>
+                        <p>Get your bus pass approved in no time.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                        </div>
+                        <h3>Convenient Payments</h3>
+                        <p>Pay online for your bus pass securely.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" aria-labelledby="mission-title">
+            <div class="container about-split">
+                <img src="/bus_image.png" alt="Red city buses lined up along the road">
+                <div>
+                    <h2 id="mission-title">Our mission</h2>
+                    <p>We provide an efficient and easy way to get your bus pass online. Our system lets you apply, pay and receive your bus pass with minimal hassle.</p>
+                    <p>Every pass comes with a QR code that holds your pass details, so conductors can verify it in seconds.</p>
+                    <div class="hero-actions">
+                        <a href="/register" class="btn btn-primary">Get Started</a>
+                        <a href="/login" class="btn btn-outline">Login</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<%- include('partials/head', { title: 'Your QR Code' }) %>
+<body>
+    <%- include('partials/navbar', { active: 'scan' }) %>
+
+    <main class="page">
+        <div class="container">
+            <div class="card card-narrow">
+                <h1 style="text-align: center;">Your QR code</h1>
+                <p class="sub" style="text-align: center;">Scan it with any phone camera.</p>
+
+                <div class="ticket-qr" style="padding: 0 0 24px;">
+                    <img src="<%= qr_code %>" alt="Generated QR code">
+                </div>
+
+                <div class="btn-row">
+                    <a href="<%= qr_code %>" download="qr-code.png" class="btn btn-primary">Download</a>
+                    <a href="/scan" class="btn btn-outline">Create another</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

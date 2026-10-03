@@ -1,0 +1,9 @@
+<% const steps = ['Details', 'Payment', 'Pass', 'QR Code']; %>
+<ol class="stepper" aria-label="Progress">
+    <% steps.forEach(function(label, i) { %>
+        <li class="<%= i < step ? 'done' : (i === step ? 'current' : '') %>" <%- i === step ? 'aria-current="step"' : '' %>>
+            <span class="num"><%= i < step ? '✓' : i + 1 %></span>
+            <span class="label"><%= label %></span>
+        </li>
+    <% }) %>
+</ol>

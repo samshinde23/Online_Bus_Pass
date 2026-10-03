@@ -1,0 +1,67 @@
+<%
+    let greetName = '';
+    if (locals.name) {
+        greetName = typeof name === 'object' ? (name.name || name.username || '') : name;
+    }
+    const routes = [
+        { value: 'Pune-Solapur', from: 'Pune', to: 'Solapur', price: 1500 },
+        { value: 'Solapur-Pandharpur', from: 'Solapur', to: 'Pandharpur', price: 1800 },
+        { value: 'Solapur-Nashik', from: 'Solapur', to: 'Nashik', price: 2000 },
+    ];
+%>
+<%- include('partials/head', { title: 'Passenger Details' }) %>
+<body>
+    <%- include('partials/navbar', { active: '' }) %>
+
+    <main class="page">
+        <div class="container">
+            <%- include('partials/stepper', { step: 0 }) %>
+
+            <div class="card">
+                <h1><%= greetName ? 'Hey ' + greetName + ', welcome!' : 'Passenger details' %></h1>
+                <p class="sub">Fill in the passenger details and choose your route.</p>
+
+                <form action="/passenger_details" method="POST">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="name">Passenger name</label>
+                            <input type="text" id="name" name="name" placeholder="Rahul Sharma" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" placeholder="21" min="1" max="120" inputmode="numeric" required>
+                            <span class="hint">Passengers must be 13 or older.</span>
+                        </div>
+                        <div class="field full">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        </div>
+                    </div>
+
+                    <fieldset class="route-options">
+                        <legend>Choose a route</legend>
+                        <% routes.forEach(function(r, i) { %>
+                            <div class="route-option">
+                                <input type="radio" id="route-<%= i %>" name="location" value="<%= r.value %>" required>
+                                <label for="route-<%= i %>">
+                                    <span class="left">
+                                        <span class="radio" aria-hidden="true"></span>
+                                        <%= r.from %> &rarr; <%= r.to %>
+                                    </span>
+                                    <span class="price">Rs. <%= r.price %></span>
+                                </label>
+                            </div>
+                        <% }) %>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Continue to payment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<%
+    const fmt = function (d) {
+        return d.toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    };
+%>
+<%- include('partials/head', { title: 'Your Pass' }) %>
+<body>
+    <%- include('partials/navbar', { active: '' }) %>
+
+    <main class="page">
+        <div class="container">
+            <%- include('partials/stepper', { step: 2 }) %>
+
+            <div class="page-title">
+                <h1>Your pass is ready</h1>
+                <p>Payment successful. Generate the QR code to use it on the bus.</p>
+            </div>
+
+            <article class="ticket" aria-label="Bus pass">
+                <div class="ticket-head">
+                    <div>
+                        <div class="label">Monthly bus pass</div>
+                        <h2>BusPass</h2>
+                    </div>
+                    <span class="ticket-status">Active</span>
+                </div>
+
+                <div class="ticket-route">
+                    <div class="label">Route</div>
+                    <div class="value"><%= location %></div>
+                </div>
+
+                <div class="ticket-body">
+                    <div class="ticket-field">
+                        <div class="label">Name</div>
+                        <div class="value"><%= name %></div>
+                    </div>
+                    <div class="ticket-field">
+                        <div class="label">Paid amount</div>
+                        <div class="value">Rs. <%= mon %></div>
+                    </div>
+                    <div class="ticket-field full">
+                        <div class="label">Email</div>
+                        <div class="value"><%= email %></div>
+                    </div>
+                    <div class="ticket-field">
+                        <div class="label">Issued</div>
+                        <div class="value mono"><%= fmt(passTime) %></div>
+                    </div>
+                    <div class="ticket-field">
+                        <div class="label">Expires</div>
+                        <div class="value mono"><%= fmt(expiryDate) %></div>
+                    </div>
+                </div>
+
+                <div class="ticket-divider" aria-hidden="true"></div>
+
+                <div class="ticket-foot">
+                    <form action="/generated" method="POST">
+                        <input type="hidden" name="name" value="<%= name %>">
+                        <input type="hidden" name="email" value="<%= email %>">
+                        <input type="hidden" name="location" value="<%= location %>">
+                        <input type="hidden" name="mon" value="<%= mon %>">
+                        <input type="hidden" name="passTime" value="<%= passTime %>">
+                        <input type="hidden" name="expiryDate" value="<%= expiryDate %>">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
+                            Generate QR Code
+                        </button>
+                    </form>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

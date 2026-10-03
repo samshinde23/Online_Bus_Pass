@@ -1,0 +1,52 @@
+<%- include('partials/head', { title: 'Payment' }) %>
+<body onload="setCurrentDateTime()">
+    <script>
+        function setCurrentDateTime() {
+            const now = new Date();
+            const formattedDate = now.toISOString().slice(0, 16); // Format for input type="datetime-local"
+            document.getElementById('passTime').value = formattedDate;
+        }
+    </script>
+
+    <%- include('partials/navbar', { active: '' }) %>
+
+    <main class="page">
+        <div class="container">
+            <%- include('partials/stepper', { step: 1 }) %>
+
+            <div class="card card-narrow">
+                <h1>Now pay the bill</h1>
+                <p class="sub"><%= locals.name ? 'Hey ' + name + ', review' : 'Review' %> your pass details before paying.</p>
+
+                <form action="/pay" method="POST">
+                    <div class="summary">
+                        <div class="summary-row"><span>Passenger</span><strong><%= name %></strong></div>
+                        <div class="summary-row"><span>Email</span><strong><%= email %></strong></div>
+                        <div class="summary-row"><span>Route</span><strong><%= location %></strong></div>
+                        <div class="summary-row"><span>Validity</span><strong>30 days</strong></div>
+                        <div class="summary-row summary-total"><span>Total to pay</span><strong>Rs. <%= mon %></strong></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="passTime">Pass generated time</label>
+                        <input type="datetime-local" id="passTime" name="passTime" readonly>
+                    </div>
+
+                    <input type="hidden" name="name" value="<%= name %>">
+                    <input type="hidden" name="email" value="<%= email %>">
+                    <input type="hidden" name="location" value="<%= location %>">
+                    <input type="hidden" name="mon" value="<%= mon %>">
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Pay Rs. <%= mon %> &amp; generate pass</button>
+                    <p class="secure-note">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        Secure payment
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

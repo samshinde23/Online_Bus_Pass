@@ -1,0 +1,43 @@
+<%- include('partials/head', { title: 'QR Pass' }) %>
+<body>
+    <%- include('partials/navbar', { active: '' }) %>
+
+    <main class="page">
+        <div class="container">
+            <%- include('partials/stepper', { step: 3 }) %>
+
+            <div class="page-title">
+                <h1>Your QR bus pass</h1>
+                <p>Show this code to the conductor when you board.</p>
+            </div>
+
+            <article class="ticket" aria-label="QR bus pass">
+                <div class="ticket-head">
+                    <div>
+                        <div class="label">Monthly bus pass</div>
+                        <h2>BusPass</h2>
+                    </div>
+                    <span class="ticket-status">Valid 30 days</span>
+                </div>
+
+                <div class="ticket-qr">
+                    <img src="<%= qr_code3 %>" alt="QR code containing your bus pass details">
+                    <p>The QR code holds your name, email, route, amount paid, issue time and expiry date.</p>
+                </div>
+
+                <div class="ticket-divider" aria-hidden="true"></div>
+
+                <div class="ticket-foot no-print">
+                    <div class="btn-row">
+                        <a href="<%= qr_code3 %>" download="bus-pass-qr.png" class="btn btn-primary">Download</a>
+                        <button type="button" class="btn btn-outline" onclick="window.print()">Print</button>
+                    </div>
+                    <a href="/" class="btn btn-outline btn-block">Back to home</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

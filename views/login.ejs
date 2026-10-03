@@ -1,0 +1,47 @@
+<%- include('partials/head', { title: 'Login' }) %>
+<body>
+    <%- include('partials/navbar', { active: 'login' }) %>
+
+    <main class="page">
+        <div class="container">
+            <div class="auth-wrap">
+                <aside class="auth-side">
+                    <img src="/bus2.png" alt="">
+                    <h2>Welcome back</h2>
+                    <p>Log in to add passenger details and get your bus pass.</p>
+                </aside>
+
+                <div class="auth-form">
+                    <% if (locals.name) { %>
+                        <div class="alert alert-success" role="status">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                            <span>Account created for <strong><%= name %></strong>. Log in to continue.</span>
+                        </div>
+                    <% } %>
+
+                    <h1>Log in</h1>
+                    <p class="sub">Enter your username and password.</p>
+
+                    <form action="/login" method="POST">
+                        <div class="field">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="rahul21" autocomplete="username" required>
+                        </div>
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
+                        </div>
+                    </form>
+
+                    <p class="switch">New here? <a href="/register">Create an account</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
